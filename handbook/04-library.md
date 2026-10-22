@@ -10,6 +10,7 @@ All DropOut boards use one shared library: [`dropout-kicad-library`](https://git
 - **Library names** `DropOut_<Category>`, an approved exception so they never collide with KiCad's stock libraries.
 - **3D model paths** `${KIPRJMOD}/lib/dropout-kicad-library/3dmodels/...`, an approved exception that keeps models pinned per board revision.
 - **Never silently change a released land pattern.**
+- **Never combine pins on a symbol.** Every package pin gets its own visible pin, including repeated power and ground pins (an MCU's 18 VSS balls are 18 pins). No KiCad native pin stacks and no hidden pins stacked under a visible one, even where KLC S4.3 allows them. Every pin can then be wired, decoupled, and checked on its own. Library CI enforces it.
 
 ## Adding a part
 

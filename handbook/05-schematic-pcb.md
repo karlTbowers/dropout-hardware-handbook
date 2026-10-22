@@ -33,6 +33,7 @@
 - CI fails on any designator that doesn't match its sheet's page, or that is left unannotated.
 - **Limits:** this works for up to 99 pages and up to 99 parts of one prefix on a page. If a board outgrows either, change this rule (e.g. to sheet number × 1000) before going past it.
 - **Only DropOut library parts.** No KiCad stock symbols except power and graphical symbols.
+- **Every pin is visible and wired on purpose.** Library symbols never combine pins ([chapter 04](04-library.md)), so each supply and ground pin is connected explicitly, with its own decoupling where the datasheet asks for it.
 - **Name every net that leaves a sheet or matters for review.** Unnamed nets are acceptable only for purely local connections.
 - **Net naming (proposed):** uppercase with underscores; rails as `<VOLTAGE>_<DOMAIN>` (`3V3_MAIN`, `1V5_CORE`, `VBAT_PROT`); active-low signals with a `_N` suffix (`RESET_N`, `IRQ_N`), unless the datasheet name is kept for a single-pin net.
 - **Expose the nets the architecture document lists** for each sheet at its interface.

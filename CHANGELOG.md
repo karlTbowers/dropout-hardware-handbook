@@ -2,6 +2,10 @@
 
 Every change to a DropOut rule, by plugin version (`.claude-plugin/plugin.json`).
 
+## 0.7.0 — 2026-10-22
+
+- **Never combine pins on a symbol** (chapters 04, 05; `dropout-standards`): every package pin gets its own visible pin, including repeated power and ground pins. No KiCad native pin stacks and no hidden stacked pins, even where KLC S4.3 allows them. Stricter than KLC; enforced by library CI (`check_pin_pad_match.py`). In schematics, every supply and ground pin is wired explicitly.
+
 ## 0.6.0 — 2026-10-22
 
 - **Vendor sites through Claude Code's built-in browser** (chapters 03, 07; `find-part`): it keeps the user's vendor sign-ins. Claude in Chrome becomes the fallback. Claude never types passwords; the user signs in once per site.
