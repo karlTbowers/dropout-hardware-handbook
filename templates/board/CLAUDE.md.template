@@ -1,0 +1,23 @@
+# {{BOARD_TITLE}} — instructions for Claude
+
+{{DESCRIPTION}}
+
+**Follows DropOut Hardware Handbook v{{HANDBOOK_VERSION}}** (the `dropout-hardware` Claude Code plugin; working copy at `~/Dev/dropout-hardware-handbook`). Use the `dropout-standards` skill for process and conventions, `find-part` for part selection, and the library repo's `add-part` skill for new library parts. This file holds only what is specific to {{BOARD_TITLE}}; the handbook covers everything else.
+
+## Board facts
+
+- KiCad project: `{{BOARD}}` (`{{BOARD}}.kicad_pro`, `.kicad_sch`, `.kicad_pcb`) at the repo root. CI expects exactly these names.
+- Architecture document: `docs/architecture/`. Its decisions are the baseline; don't change one without the user's agreement.
+- Created {{DATE}}.
+
+## Deviations from the handbook
+
+None.
+
+<!-- List any board-specific overrides here with the reason, e.g.
+- Uses JLCPCB assembly: add LCSC part numbers; LCSC/JLC are primary sources for this board.
+-->
+
+## Current release blockers
+
+None yet.

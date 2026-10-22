@@ -1,0 +1,17 @@
+{
+  "name": "dropout",
+  "owner": {
+    "name": "Karl Bowers",
+    "url": "https://github.com/karlTbowers"
+  },
+  "metadata": {
+    "description": "DropOut hardware design plugins"
+  },
+  "plugins": [
+    {
+      "name": "dropout-hardware",
+      "source": "./",
+      "description": "DropOut hardware design handbook, part search, and board skills"
+    }
+  ]
+}
