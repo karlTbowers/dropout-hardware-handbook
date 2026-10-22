@@ -52,6 +52,11 @@ git submodule add https://github.com/karlTbowers/dropout-kicad-library.git lib/d
 
 Create `<board>.kicad_pro`, `.kicad_sch`, and `.kicad_pcb` at the repo root: with Konnect if KiCad is running, otherwise ask the user to create a new project named `<board>` in that folder. Keep the template's `sym-lib-table` and `fp-lib-table` (they point into `lib/`). Do not commit `*.kicad_prl`.
 
+Then apply the schematic conventions (`../../handbook/05-schematic-pcb.md`):
+- In `<board>.kicad_pro`, set `"schematic": {"annotation": {"method": 1}}` (first free number after sheet number × 100).
+- The root sheet stays an index (page 1). Sub-sheets are added in `sheets/` (the template provides the folder) once the architecture's sheet plan exists, with page numbers from 2 in plan order.
+- `python3 scripts/check_schematic.py <board>` must pass.
+
 ## 5. Documentation site
 
 Check that the starter builds (needs Node and the `d2` binary, `brew install node d2`):

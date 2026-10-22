@@ -17,7 +17,10 @@
 Created from [`templates/board`](../templates/board) by the `new-board` skill.
 
 ```
-<board>.kicad_pro / .kicad_sch / .kicad_pcb    KiCad project, named after the board in lowercase
+<board>.kicad_pro / .kicad_sch / .kicad_pcb    KiCad project, named after the board in lowercase;
+                                                <board>.kicad_sch is the root sheet (page 1, index)
+sheets/                                         every other schematic sheet, flat (chapter 05)
+scripts/check_schematic.py                      CI check: sheet files, page numbers, reference designators
 sym-lib-table, fp-lib-table                     point only into lib/
 lib/dropout-kicad-library/                      library submodule
 docs/                                           Starlight documentation site: architecture, calculations,

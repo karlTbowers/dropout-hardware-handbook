@@ -12,8 +12,8 @@
 
 Runs in the official `kicad/kicad:10.0` container (`--user root`), with the library submodule checked out.
 
-- **Every push and PR:** ERC (errors fail), DRC with schematic parity (errors fail), and the full output set (PDF, BOM, Gerbers, drill, positions, STEP), uploaded as a workflow artifact.
-- **Skips cleanly** until `<board>.kicad_pro` exists.
+- **Every push and PR:** schematic conventions (`scripts/check_schematic.py`: sheet files, page numbers, reference designators; [chapter 05](05-schematic-pcb.md)), ERC (errors fail), DRC with schematic parity (errors fail), and the full output set (PDF, BOM, Gerbers, drill, positions, STEP), uploaded as a workflow artifact.
+- **Skips cleanly** until `<board>.kicad_pro` exists. DRC, the PCB outputs, and `rev-*` releases also wait until the PCB has a board outline on Edge.Cuts (an empty board fails DRC); ERC, the schematic checks, the PDF, and the BOM run from the start.
 
 ## Board documentation site (`docs.yml`)
 
