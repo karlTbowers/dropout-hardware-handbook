@@ -1,0 +1,12 @@
+# Requirements (handbook chapter 08). IDs: REQ-<AREA>-<NNN>.
+# group: basis = design-requirement list; parameter = parameter table (parameter, text, consequence).
+# Every line measurable and testable (handbook chapter 01, stage 1).
+#
+# - id: REQ-PWR-001
+#   group: parameter
+#   parameter: Vehicle supply
+#   text: 12 V nominal; protected automotive transients
+#   consequence: 40 V-class regulators behind a load-dump clamp
+#   page: subsystems/power            # docs page that owns it
+#   verified_by: [GATE-PWR-01]
+[]

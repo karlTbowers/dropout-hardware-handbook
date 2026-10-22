@@ -7,7 +7,7 @@
 ## Board facts
 
 - KiCad project: `{{BOARD}}` (`{{BOARD}}.kicad_pro`, `.kicad_sch`, `.kicad_pcb`) at the repo root. CI expects exactly these names.
-- Architecture document: `docs/architecture/`. Its decisions are the baseline; don't change one without the user's agreement.
+- Architecture: the Starlight site in `docs/` (handbook chapter 08); facts live in `docs/src/data/`. Its decisions are the baseline; don't change one without the user's agreement.
 - Created {{DATE}}.
 
 ## Deviations from the handbook

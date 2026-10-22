@@ -22,7 +22,7 @@ Already cloned without it? Run `git submodule update --init`.
 {{BOARD}}.kicad_pro / .kicad_sch / .kicad_pcb   KiCad 10 project
 sym-lib-table, fp-lib-table                     point into lib/
 lib/dropout-kicad-library/                      submodule: symbols, footprints, 3D models
-docs/architecture/                              architecture document
+docs/                                           Starlight documentation site: architecture, calculations, bring-up
 docs/                                           calculations, test plans, bring-up, validation
 .github/workflows/ci.yml                        ERC/DRC on every push; fab outputs on rev-* tags
 ```
