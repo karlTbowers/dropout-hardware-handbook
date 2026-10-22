@@ -2,6 +2,13 @@
 
 Every change to a DropOut rule, by plugin version (`.claude-plugin/plugin.json`).
 
+## 0.4.0 — 2026-10-22
+
+- **Schematic sheet files** (chapter 05): root sheet `<board>.kicad_sch` at the repo root as a page-1 index; every other sheet flat in `sheets/`, named by subsystem; a repeated block is one file placed per instance.
+- **Page numbers**: integers 1–99, unique, root = 1, frozen once a sheet has parts.
+- **Reference designators**: page × 100 + 01…99 (`R201`, `C1101`), via KiCad's "first free after sheet number × 100" set in the project file. Limits: 99 pages, 99 parts of one prefix per page.
+- Board template: `scripts/check_schematic.py` and a CI step enforcing all three; `sheets/` folder. CI runs DRC, PCB outputs, and `rev-*` releases only once the board has an Edge.Cuts outline. `new-board` sets the annotation method.
+
 ## 0.3.0 — 2026-10-21
 
 - **Board template ships a Starlight starter** in `templates/board/docs/`, extracted from the Node60 architecture port (labelled Rev C at the time; renumbered Rev A on 2026-10-22): config, content-collection schemas with build-time reference checks, rendering components, empty data files, page skeletons, power/signals D2 skeletons, and `docs.yml`. The single-file `ARCHITECTURE.md` outline is removed; `new-board` installs and builds the site (chapter 08 "Template").
