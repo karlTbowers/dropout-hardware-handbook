@@ -2,6 +2,13 @@
 
 Every change to a DropOut rule, by plugin version (`.claude-plugin/plugin.json`).
 
+## 0.2.0 — 2026-10-21
+
+- **Architecture and board documents are Astro Starlight sites** in each board repo's `docs/`, published to GitHub Pages (new chapter 08). Single-file HTML documents are retired; existing ones are kept frozen.
+- Facts as data with IDs (requirements, decisions, parts, gates), with traceability enforced by the build.
+- Diagrams as code: D2 for system/block diagrams, Mermaid for sequences and state machines (proposed; pending confirmation after the Node60 comparison).
+- Architecture revisions tagged `arch-rev-<letter>`; new `docs.yml` CI.
+
 ## 0.1.0 — 2026-10-21
 
 Initial handbook, seeded from decisions made while setting up Node60 and the DropOut library:

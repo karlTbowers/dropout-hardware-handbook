@@ -64,4 +64,4 @@ Confirm the CI run passes (it skips cleanly until the KiCad project exists).
 
 ## 6. Next step
 
-Tell the user the repo is ready, and that the next stage is requirements and architecture (`../../handbook/01-design-process.md`), starting in `docs/architecture/`.
+Tell the user the repo is ready, and that the next stage is requirements and architecture (`../../handbook/01-design-process.md`), documented as a Starlight site in `docs/` (`../../handbook/08-architecture-documents.md`). Until the template ships a Starlight starter, copy `node60-hw/docs/`'s site structure and empty its data files; `templates/board/docs/architecture/ARCHITECTURE.md` remains only as a content outline.

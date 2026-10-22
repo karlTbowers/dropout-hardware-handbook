@@ -1,0 +1,87 @@
+# 08 · Architecture and board documentation
+
+**Decision (2026-10-21):** every DropOut device documents its architecture, and its other design documents, as an **Astro Starlight** site in the board repo, published to GitHub Pages. Hand-written single-file HTML documents are no longer used. Existing ones are kept as frozen records.
+
+## What makes a good architecture document
+
+1. **Lead with the decision.** The chosen architecture in one paragraph, the primary release blocker, and a status grid (locked / risk / blocked per subsystem).
+2. **Facts live once, as data.** Requirements, parts, decisions, and verification gates are structured data files with IDs. Pages render them, so a number is never typed twice and can't drift.
+3. **Every decision has a record.** Context, the choice, **rejected alternatives with reasons**, and consequences. Superseded decisions are marked, never deleted.
+4. **Traceability.** Requirement → decision → part → gate → test result, all linked by ID. The build fails on a reference to an ID that doesn't exist.
+5. **Numbers justify choices.** Show the calculation (dissipation, margins, resolution), not just the conclusion.
+6. **Sourcing is dated.** Price and stock are observations with a date and source ([chapter 03](03-part-search.md)).
+7. **Diagrams are code.** Diagram sources are text, diffable in PRs, and every block links to its section.
+8. **Layered for the reader.** One-page overview → system view → one page per subsystem → data tables.
+9. **Git is the revision history.** Each architecture revision is a tag; changes are reviewable diffs, with a revision-history page summarizing them.
+
+## Site layout in a board repo
+
+The whole `docs/` folder is the Starlight project:
+
+```
+docs/
+  package.json, astro.config.mjs          Starlight site; base "/<board>-hw"
+  src/content/docs/
+    index.mdx                             decision overview + status grid (from data)
+    requirements.mdx                      rendered from data/requirements.yaml
+    system.mdx                            system block diagram + partitioning
+    subsystems/<name>.mdx                 one page per subsystem
+    decisions/                            index + one page per decision (from data)
+    components.mdx                        component baseline (from data/parts.yaml)
+    interfaces.mdx                        schematic sheet plan and nets each sheet exposes
+    verification.mdx                      gates and status (from data/gates.yaml)
+    calculations/, bring-up/, validation/ other design documents
+    sources.mdx                           source register
+    revisions.mdx                         revision history
+  src/data/
+    requirements.yaml                     REQ-<AREA>-<NNN>
+    parts.yaml                            role, MPN, dated observations, second source, library ref
+    gates.yaml                            GATE-<AREA>-<NN>
+    decisions/DEC-<NNN>-<slug>.md         one file per decision (frontmatter + reasoning)
+  src/diagrams/                           *.d2 and *.mmd sources
+  src/components/                         StatusGrid, RequirementTable, PartTable, GateList, Ref…
+  public/legacy/                          frozen pre-Starlight documents (served as-is)
+```
+
+### IDs and data
+
+| Kind | ID format | Key fields |
+|---|---|---|
+| Requirement | `REQ-PWR-003` | text, value/limit, rationale, `verified_by: [GATE-…]` |
+| Decision | `DEC-007` | title, status (proposed / accepted / superseded), date, revision, `supersedes`, `requirements`, `parts`, rejected alternatives |
+| Part | MPN | role, subsystem, manufacturer, `observations: [{date, source, price_1, price_1k, stock}]`, second source, `DropOut_<Lib>:<Symbol>` reference |
+| Gate | `GATE-THM-01` | evidence required, what it blocks, status, link to result |
+
+Astro content collections validate the data (schemas with references). A broken ID or missing field fails the build, and CI runs the build.
+
+Parts that exist in `dropout-kicad-library` link to their page in the library catalog (symbol, footprint, 3D viewer).
+
+## Diagrams
+
+> **Pending confirmation:** the user is reviewing the Node60 D2-vs-Mermaid comparison. Until confirmed, this is the proposed rule.
+
+| Diagram | Tool | Why |
+|---|---|---|
+| System and block diagrams (domains, buses, power paths) | **D2** (dagre layout by default; ELK when right-angle routing reads better) | Best layout and styling control for dense block diagrams; every block carries a `link` to its section |
+| Sequences, state machines, simple flows | **Mermaid** | Good at these types; GitHub renders it natively in READMEs and PRs |
+
+Rules:
+- Top-to-bottom direction for system diagrams. Left-to-right chains of groups become unreadably wide.
+- Colors by domain, consistent across the site: battery / always-on / compute / network / switched loads.
+- Power paths are thick, rails medium, signals thin; every connection labeled.
+- **Every block links to its subsystem page.**
+- D2 renders at build time (the `d2` binary is installed in CI); Mermaid renders at build time too, not in the reader's browser.
+
+## Revisions
+
+- Architecture revisions are lettered (Rev A, B, C…) and tagged in git as `arch-rev-<letter>`. (Board fab revisions use `rev-<letter>`; the two series are independent.)
+- `revisions.mdx` lists what changed in each revision and why, linking the decisions added or superseded.
+- The published site always shows `main`. A past revision is read from its tag.
+
+## Publishing
+
+A `docs.yml` workflow in the board repo builds the site (Node + `d2`) on every push to `main` and deploys it to GitHub Pages: `https://karltbowers.github.io/<board>-hw/`. Pull requests build it without deploying, so broken references fail the PR. In the repo's **Settings → Pages**, set the source to **GitHub Actions**.
+
+## Template
+
+The board template's Starlight starter will be extracted from the Node60 port once that's done. Until then, new boards copy Node60's `docs/` structure and empty its data files.

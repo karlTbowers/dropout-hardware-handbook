@@ -21,6 +21,7 @@ DropOut designs open hardware in KiCad 10 following its handbook. The handbook l
 | Schematic capture, net naming, PCB layout | `05-schematic-pcb.md` |
 | CI, ERC/DRC, releases, fab packages | `06-ci-releases.md` |
 | Tools, MCPs, credentials | `07-tools.md` |
+| Architecture documents, decision records, requirements/gates data, diagrams, the board docs site | `08-architecture-documents.md` |
 
 3. The **board's own `CLAUDE.md`** overrides the handbook only where it says so explicitly (e.g. a board that uses JLC assembly). Otherwise the handbook wins. If they conflict and the board's file doesn't explain why, ask the user.
 

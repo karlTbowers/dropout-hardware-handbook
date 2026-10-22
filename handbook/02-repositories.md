@@ -20,8 +20,8 @@ Created from [`templates/board`](../templates/board) by the `new-board` skill.
 <board>.kicad_pro / .kicad_sch / .kicad_pcb    KiCad project, named after the board in lowercase
 sym-lib-table, fp-lib-table                     point only into lib/
 lib/dropout-kicad-library/                      library submodule
-docs/architecture/                              architecture document (see chapter 01)
-docs/                                           calculations, test plans, bring-up, validation results
+docs/                                           Starlight documentation site: architecture, calculations,
+                                                test plans, bring-up, validation (chapter 08)
 .github/workflows/ci.yml                        ERC/DRC on push; fab package on rev-* tags
 CLAUDE.md                                       board-specific facts only; points to this handbook
 ```
@@ -44,7 +44,7 @@ Every board mounts the library at exactly `lib/dropout-kicad-library`. Footprint
 
 - `main` is always in a state that passes CI.
 - Changes go through a branch and a pull request: `add/<MPN>` in the library, `<topic>` in board repos. Small doc fixes may go straight to `main`.
-- Board revisions are tags: `rev-a`, `rev-b`, …. Tags are never moved or deleted.
+- Board fab revisions are tags `rev-a`, `rev-b`, …; architecture revisions are tags `arch-rev-a`, `arch-rev-b`, …. Tags are never moved or deleted.
 - Commits made with Claude carry a `Co-Authored-By` trailer.
 
 ## Recording the handbook version

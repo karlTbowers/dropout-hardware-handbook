@@ -31,6 +31,7 @@ This handbook is how DropOut designs hardware. Every device follows it, whoever 
 | 05 | [Schematic and PCB conventions](05-schematic-pcb.md) | Sheets, nets, test points, layout defaults |
 | 06 | [CI and releases](06-ci-releases.md) | Checks on every push; what a release contains |
 | 07 | [Tools and credentials](07-tools.md) | The toolchain, what was rejected and why, credentials handling |
+| 08 | [Architecture and board documentation](08-architecture-documents.md) | Starlight docs sites, data-driven architecture, diagrams, decision records |
 
 ## Changing the handbook
 

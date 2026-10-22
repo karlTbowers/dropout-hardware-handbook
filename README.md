@@ -16,6 +16,7 @@ Start with [handbook/00-overview.md](handbook/00-overview.md).
 | 05 | [Schematic and PCB conventions](handbook/05-schematic-pcb.md) |
 | 06 | [CI and releases](handbook/06-ci-releases.md) |
 | 07 | [Tools and credentials](handbook/07-tools.md) |
+| 08 | [Architecture and board documentation](handbook/08-architecture-documents.md): Starlight, data, diagrams |
 
 ## Install the Claude Code plugin
 

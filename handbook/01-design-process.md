@@ -10,7 +10,7 @@ Write down what the device must do, in measurable terms: electrical (voltages, c
 
 ## Stage 2 · Architecture
 
-Choose the system structure and the key parts. The architecture document (`docs/architecture/` in the board repo) follows the Node60 pattern:
+Choose the system structure and the key parts. The architecture is documented as a **Starlight site** in the board repo's `docs/` (format, data files, and diagrams in [chapter 08](08-architecture-documents.md)). Its content follows the Node60 pattern:
 
 - **Decision overview:** the chosen architecture in one paragraph, plus the primary release blocker if there is one.
 - **Status grid:** each subsystem with its state (locked, risk, blocked).
@@ -20,7 +20,7 @@ Choose the system structure and the key parts. The architecture document (`docs/
 - **Verification and release gates:** what must be proven, and what each unproven item blocks.
 - **Source register:** every datasheet and reference used.
 
-Revisions are lettered (Rev A, B, C…). Each revision states what changed and why.
+Revisions are lettered (Rev A, B, C…), tagged `arch-rev-<letter>`, and each states what changed and why.
 
 **Gate:** architecture reviewed; every key part has a datasheet-verified selection and a sourcing check ([chapter 03](03-part-search.md)); release blockers are named.
 

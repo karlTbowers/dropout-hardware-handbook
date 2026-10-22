@@ -13,6 +13,9 @@
 | **kicad-library-tools** | Footprint and 3D generators, KLC checkers (pinned in the library repo) |
 | **GitHub** + **Actions** | Repos, PRs, CI, releases, GitHub Pages |
 | **Astro** + Pagefind | Library catalog site |
+| **Astro Starlight** | Architecture and board documentation sites ([chapter 08](08-architecture-documents.md)) |
+| **D2** | System and block diagrams (text source, clickable blocks) |
+| **Mermaid** | Sequence and state diagrams; diagrams in READMEs and PRs |
 | **claude.ai project** "Automotive Power Distribution Unit KiCAD project" | Architecture discussions and documents; not the place for file work |
 
 ## Considered and rejected
@@ -22,6 +25,7 @@
 | KiCAD-Prism | Reviewed by the user; not used. The catalog site is built with Astro. |
 | kistack | Not used; DropOut writes its own skills. |
 | Hugo, Jekyll, seite | Astro chosen for data-driven pages and the interactive 3D viewer. |
+| Hand-written single-file HTML architecture documents | Replaced by Starlight sites (2026-10-21): not diffable, raster diagrams, facts duplicated, no traceability. |
 | pcbparts-mcp, Nexar, datasheet MCPs | See [chapter 03](03-part-search.md#considered-and-not-used). |
 
 ## Credentials

@@ -15,6 +15,10 @@ Runs in the official `kicad/kicad:10.0` container (`--user root`), with the libr
 - **Every push and PR:** ERC (errors fail), DRC with schematic parity (errors fail), and the full output set (PDF, BOM, Gerbers, drill, positions, STEP), uploaded as a workflow artifact.
 - **Skips cleanly** until `<board>.kicad_pro` exists.
 
+## Board documentation site (`docs.yml`)
+
+Builds the Starlight site in `docs/` (Node + the `d2` binary) on every push and PR, so broken requirement, decision, part, or gate references fail CI. On `main`, it deploys to GitHub Pages. See [chapter 08](08-architecture-documents.md).
+
 ## Releases
 
 A board revision is released by pushing a tag:
