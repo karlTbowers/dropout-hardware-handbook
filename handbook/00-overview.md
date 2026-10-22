@@ -16,7 +16,8 @@ This handbook is how DropOut designs hardware. Every device follows it, whoever 
 | Repo | Purpose | Visibility |
 |---|---|---|
 | [`dropout-hardware-handbook`](https://github.com/karlTbowers/dropout-hardware-handbook) | This handbook, board template, and the Claude Code plugin | Public |
-| [`dropout-kicad-library`](https://github.com/karlTbowers/dropout-kicad-library) | Company-wide symbols, footprints, 3D models; catalog site | Public |
+| [`dropout-kicad-library`](https://github.com/karlTbowers/dropout-kicad-library) | Company-wide symbols, footprints, 3D models, and their checks only; boards mount it as a submodule | Public |
+| [`dropout-library-catalog`](https://github.com/karlTbowers/dropout-library-catalog) | Browsable catalog of the library ([site](https://karltbowers.github.io/dropout-library-catalog/)) | Public |
 | `<board>-hw` (e.g. [`node60-hw`](https://github.com/karlTbowers/node60-hw)) | One per device: KiCad project, docs, CI | Public |
 | `<board>-fw` (future) | Firmware per device | TBD |
 

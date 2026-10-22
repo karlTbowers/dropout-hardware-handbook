@@ -21,4 +21,8 @@ New KLC exceptions are proposed to the user, never added on Claude's own initiat
 
 ## Catalog site
 
-The library publishes a searchable catalog with symbol and footprint drawings and an interactive 3D viewer at `https://karltbowers.github.io/dropout-kicad-library/`, built with Astro by GitHub Actions on every push to `main`. Plan: the library repo's `CLAUDE.md`.
+**Decided (2026-10-22):** the catalog lives in its **own repo**, [`dropout-library-catalog`](https://github.com/karlTbowers/dropout-library-catalog), published at `https://karltbowers.github.io/dropout-library-catalog/`. The library repo holds only parts and their checks, because every board mounts it as a submodule and none of them needs the site.
+
+- The catalog is built with Astro by GitHub Actions from the library's `main`: symbol and footprint drawings, every field, distributor links, and (planned) an interactive 3D viewer.
+- It rebuilds when the library's CI sends a `library-updated` repository dispatch after a push to `main` passes the checks (library secret `CATALOG_DISPATCH_TOKEN`: a fine-grained token with Contents: read and write on the catalog repo only), and nightly as a fallback.
+- Nothing is edited in the catalog to add a part: add it to the library. Plan and status: the catalog repo's `CLAUDE.md`.

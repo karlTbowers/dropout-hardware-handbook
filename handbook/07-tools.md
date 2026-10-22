@@ -12,7 +12,7 @@
 | **Claude in Chrome** | Sign-in-gated manufacturer and CAD sites, using the user's Chrome |
 | **kicad-library-tools** | Footprint and 3D generators, KLC checkers (pinned in the library repo) |
 | **GitHub** + **Actions** | Repos, PRs, CI, releases, GitHub Pages |
-| **Astro** + Pagefind | Library catalog site |
+| **Astro** | Library catalog site (`dropout-library-catalog`; Pagefind planned for search) |
 | **Astro Starlight** | Architecture and board documentation sites ([chapter 08](08-architecture-documents.md)) |
 | **D2** | System and block diagrams (text source, clickable blocks) |
 | **Mermaid** | Sequence and state diagrams; diagrams in READMEs and PRs |
