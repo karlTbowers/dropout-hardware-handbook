@@ -2,6 +2,10 @@
 
 Every change to a DropOut rule, by plugin version (`.claude-plugin/plugin.json`).
 
+## 0.5.0 — 2026-10-22
+
+- **Library catalog in its own repo** (chapters 00, 02, 04, 07, 08): `dropout-library-catalog`, live at `https://karltbowers.github.io/dropout-library-catalog/`. The library repo holds only parts and their checks, so boards mounting it as a submodule don't carry the site. The catalog rebuilds on a `library-updated` dispatch from library CI and nightly.
+
 ## 0.4.0 — 2026-10-22
 
 - **Schematic sheet files** (chapter 05): root sheet `<board>.kicad_sch` at the repo root as a page-1 index; every other sheet flat in `sheets/`, named by subsystem; a repeated block is one file placed per instance.

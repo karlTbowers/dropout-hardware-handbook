@@ -6,6 +6,7 @@
 ~/Dev/
   dropout-hardware-handbook/      this handbook (also installed as a Claude Code plugin)
   dropout-kicad-library/          librarian working copy: parts are added here
+  dropout-library-catalog/        catalog site for the library
   <board>-hw/                     one per device
     lib/dropout-kicad-library/    pinned copy of the library (git submodule)
 ```

@@ -54,7 +54,7 @@ docs/
 
 Astro content collections validate the data (schemas with references). A broken ID or missing field fails the build, and CI runs the build.
 
-Parts that exist in `dropout-kicad-library` link to their page in the library catalog (symbol, footprint, 3D viewer).
+Parts that exist in `dropout-kicad-library` link to their page in the library catalog (`https://karltbowers.github.io/dropout-library-catalog/parts/<Library>/<Symbol>/`: symbol, footprint, 3D viewer).
 
 ## Diagrams
 
