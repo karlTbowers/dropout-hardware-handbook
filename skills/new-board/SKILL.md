@@ -37,7 +37,7 @@ Then replace the placeholders in every copied file:
 | `{{HANDBOOK_VERSION}}` | `version` from this plugin's `.claude-plugin/plugin.json` |
 | `{{DATE}}` | today, YYYY-MM-DD |
 
-Rename `CLAUDE.md.template` to `CLAUDE.md` (it's stored under another name so Claude doesn't load it as instructions inside the handbook repo), and `docs/architecture/ARCHITECTURE.md` to `docs/architecture/{{BOARD_TITLE}}-Architecture-RevA.md`.
+Rename `CLAUDE.md.template` to `CLAUDE.md` (it's stored under another name so Claude doesn't load it as instructions inside the handbook repo). `docs/` is a ready Starlight starter (handbook chapter 08); its placeholders are replaced like every other file's, `docs/package-lock.json` included.
 
 Afterwards, `grep -rnE '\{\{(BOARD|BOARD_TITLE|DESCRIPTION|HANDBOOK_VERSION|DATE)\}\}' . --exclude-dir=lib --exclude-dir=.git` must find nothing. (`${{ ... }}` in the CI workflow is GitHub Actions syntax; leave it.)
 
@@ -52,7 +52,17 @@ git submodule add https://github.com/karlTbowers/dropout-kicad-library.git lib/d
 
 Create `<board>.kicad_pro`, `.kicad_sch`, and `.kicad_pcb` at the repo root: with Konnect if KiCad is running, otherwise ask the user to create a new project named `<board>` in that folder. Keep the template's `sym-lib-table` and `fp-lib-table` (they point into `lib/`). Do not commit `*.kicad_prl`.
 
-## 5. Commit, push, verify
+## 5. Documentation site
+
+Check that the starter builds (needs Node and the `d2` binary, `brew install node d2`):
+
+```bash
+cd ~/Dev/<board>-hw/docs && npm ci && npm run build
+```
+
+Ask the user to set the repo's **Settings → Pages → Source** to **GitHub Actions**, so `docs.yml` can deploy `main` to `https://karltbowers.github.io/<board>-hw/`.
+
+## 6. Commit, push, verify
 
 ```bash
 git add -A
@@ -60,8 +70,8 @@ git commit -m "Initial board repository from DropOut handbook template"
 git push -u origin main
 ```
 
-Confirm the CI run passes (it skips cleanly until the KiCad project exists).
+Confirm both workflows pass: `ci.yml` (it skips cleanly until the KiCad project exists) and `docs.yml` (builds and deploys the site).
 
-## 6. Next step
+## 7. Next step
 
-Tell the user the repo is ready, and that the next stage is requirements and architecture (`../../handbook/01-design-process.md`), documented as a Starlight site in `docs/` (`../../handbook/08-architecture-documents.md`). Until the template ships a Starlight starter, copy `node60-hw/docs/`'s site structure and empty its data files; `templates/board/docs/architecture/ARCHITECTURE.md` remains only as a content outline.
+Tell the user the repo is ready, and that the next stage is requirements and architecture (`../../handbook/01-design-process.md`), written into the Starlight site in `docs/` (`../../handbook/08-architecture-documents.md`): facts in `docs/src/data/`, one page per subsystem in `docs/src/content/docs/subsystems/`, diagrams in `docs/src/diagrams/`. Node60 (`node60-hw/docs/`) is the worked example.

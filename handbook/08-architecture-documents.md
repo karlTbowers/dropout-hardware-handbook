@@ -97,4 +97,4 @@ A `docs.yml` workflow in the board repo builds the site (Node + `d2`) on every p
 
 ## Template
 
-The board template's Starlight starter will be extracted from the Node60 port once that's done. Until then, new boards copy Node60's `docs/` structure and empty its data files.
+The board template (`templates/board/docs/`) is a ready Starlight starter, extracted from the Node60 port (2026-10-21): config with the `/<board>-hw` base, content-collection schemas, the data layer that fails the build on unknown IDs, the rendering components (`StatusGrid`, `RequirementTable`, `PartTable`, `GateList`, `DecisionList`, `SourceList`, `Metrics`, `Ref`, `D2Diagram`, `MermaidDiagram`), empty data files with commented examples, page skeletons, power and signals D2 skeletons with this chapter's conventions, and `.github/workflows/docs.yml`. The `new-board` skill installs it. Node60's site is the worked example.

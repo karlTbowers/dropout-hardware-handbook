@@ -1,0 +1,22 @@
+{
+  "name": "{{BOARD}}-docs",
+  "type": "module",
+  "version": "0.0.0",
+  "private": true,
+  "description": "{{BOARD_TITLE}} architecture and design documentation (Astro Starlight)",
+  "scripts": {
+    "diagrams": "node scripts/render-diagrams.mjs",
+    "dev": "npm run diagrams && astro dev",
+    "build": "npm run diagrams && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/starlight": "^0.42.6",
+    "astro": "^7.2.10",
+    "sharp": "^0.35.3"
+  },
+  "devDependencies": {
+    "@mermaid-js/mermaid-cli": "^12.0.0"
+  }
+}

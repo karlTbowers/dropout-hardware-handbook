@@ -1,0 +1,9 @@
+# Status grid on the decision overview. state: locked / risk / blocked
+#
+# - id: compute
+#   area: Compute
+#   selection: S32K344EHT1MMMST
+#   state: locked
+#   note: Locked · production
+#   page: subsystems/compute
+[]

@@ -1,0 +1,12 @@
+# Verification and release gates (handbook chapter 08). IDs: GATE-<AREA>-<NN>.
+# group: freeze, or a subsystem's own release-gate group (add it to the enum in content.config.ts).
+#
+# - id: GATE-THM-01
+#   title: Dual-channel current
+#   group: freeze
+#   evidence: Both channels at 10 A across ambient, supply, enclosure, and aging
+#   blocks: 10 A rating
+#   status: open                      # open / passed / failed
+#   page: subsystems/outputs
+#   result: null                      # link to the evidence once it exists
+[]

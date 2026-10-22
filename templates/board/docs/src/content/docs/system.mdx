@@ -1,0 +1,20 @@
+---
+title: System architecture
+description: '{{BOARD_TITLE}} power and signals views and partitioning.'
+---
+
+import D2Diagram from '../../components/D2Diagram.astro';
+
+## Power view
+
+<D2Diagram name="power" caption="Source → input protection → protected bus → always-on supplies, switched rails, switched loads. Click a block for its subsystem page." />
+
+## Signals view
+
+<D2Diagram name="signals" caption="Inputs left, controller centre, controlled devices right. Solid = digital, dashed = analog into the ADC." />
+
+## Partitioning rule
+
+{/* Power domains, ground/return strategy, where protection sits. */}
+
+{/* State machines and sequences: add src/diagrams/<name>.mmd and <MermaidDiagram name="<name>" />. */}

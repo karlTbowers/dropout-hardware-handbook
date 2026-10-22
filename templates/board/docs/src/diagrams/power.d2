@@ -1,0 +1,37 @@
+# {{BOARD_TITLE}} · Power architecture (handbook chapter 08)
+# Line weight = current: thick = battery path, medium = protected-bus branches, thin = regulated rails;
+# dashed = enable/supervision. Collapse series chains into one block; use a bus node where a supply fans out.
+# Every block links to its subsystem page (site-relative; the D2Diagram component adds the base path).
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: dagre
+  }
+}
+
+classes: {
+  external: {style: {fill: "#f1f4f6"; stroke: "#7d8f9b"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  battery: {style: {fill: "#fff2d9"; stroke: "#bd6b00"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  bus: {style: {fill: "#bd6b00"; stroke: "#bd6b00"; border-radius: 4; font-color: "#ffffff"; bold: true}}
+  aon: {style: {fill: "#e2f3f1"; stroke: "#087c77"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  rail: {style: {fill: "#e6f1f7"; stroke: "#176a96"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  load: {style: {fill: "#fce9e6"; stroke: "#a9392d"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  group: {style: {fill: "#f7f9fa"; stroke: "#a8bac6"; stroke-dash: 4; border-radius: 10; font-color: "#536776"; font-size: 15}}
+  hi: {style: {stroke: "#bd6b00"; stroke-width: 6; font-color: "#bd6b00"}}
+  branch: {style: {stroke: "#bd6b00"; stroke-width: 3; font-color: "#bd6b00"}}
+  r_main: {style: {stroke: "#176a96"; stroke-width: 2; font-color: "#176a96"}}
+  monitor: {style: {stroke: "#735590"; stroke-width: 2; stroke-dash: 5; font-color: "#735590"}}
+}
+
+bat: "Battery" {class: external}
+entry: "Input protection" {class: battery}
+bus: "PROTECTED BUS" {class: bus}
+rail: "Regulator" {class: rail}
+load: "Switched loads" {class: load}
+
+bat -> entry: "VBAT" {class: hi}
+entry -> bus {class: hi}
+bus -> load {class: hi}
+bus -> rail {class: branch}

@@ -1,0 +1,33 @@
+# {{BOARD_TITLE}} · Signal architecture, digital and analog (handbook chapter 08)
+# Inputs on the left, controller in the middle, controlled devices on the right.
+# Solid = digital (network in its own colour). Dashed = analog into the ADC ("→ ADC" in the label).
+# Every block links to its subsystem page (site-relative; the D2Diagram component adds the base path).
+
+direction: right
+
+vars: {
+  d2-config: {
+    layout-engine: elk
+  }
+}
+
+classes: {
+  external: {style: {fill: "#f1f4f6"; stroke: "#7d8f9b"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  network: {style: {fill: "#efeaf4"; stroke: "#735590"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  compute: {style: {fill: "#e6f1f7"; stroke: "#176a96"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  sense: {style: {fill: "#e8f3ec"; stroke: "#317151"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  load: {style: {fill: "#fce9e6"; stroke: "#a9392d"; stroke-width: 2; border-radius: 8; font-color: "#13283a"}}
+  group: {style: {fill: "#f7f9fa"; stroke: "#a8bac6"; stroke-dash: 4; border-radius: 10; font-color: "#536776"; font-size: 15}}
+  net: {style: {stroke: "#735590"; stroke-width: 3; font-color: "#735590"}}
+  dig: {style: {stroke: "#176a96"; stroke-width: 2; font-color: "#176a96"}}
+  ana: {style: {stroke: "#317151"; stroke-width: 2; stroke-dash: 5; font-color: "#317151"}}
+}
+
+phy: "Network PHY" {class: network}
+sensor: "Sensor" {class: sense}
+mcu: "Controller" {class: compute}
+out: "Controlled device" {class: load}
+
+phy <-> mcu: "network interface" {class: net}
+sensor -- mcu: "→ ADC" {class: ana}
+mcu -> out: "SPI" {class: dig}

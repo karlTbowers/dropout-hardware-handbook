@@ -1,0 +1,19 @@
+# Component baseline (handbook chapters 03 and 08). id = MPN, the part family while the
+# orderable code is open, or TBD-… while no part is chosen (mpn: null in those cases).
+# Prices and stock are dated observations, never quotes.
+#
+# - id: LM74910HQRGERQ1
+#   mpn: LM74910HQRGERQ1
+#   manufacturer: Texas Instruments
+#   qty: 1
+#   function: Ideal-diode / reverse-battery / OCP controller
+#   subsystem: power                  # page slug under subsystems/
+#   status: plan-of-record            # locked / plan-of-record / selected / alternative / future / open
+#   decision_note: Plan of record
+#   supply_note: 26-week manufacturer lead if depleted
+#   second_source: null               # another part id in this file
+#   observations:
+#     - { date: 2026-10-13, source: DigiKey, prices: [{ qty: "1", usd: 5.65 }, { qty: 1k, usd: 3.26 }], stock: 773 }
+#   decisions: [DEC-001]
+#   library: null                     # DropOut_<Lib>:<Symbol> once in dropout-kicad-library
+[]
