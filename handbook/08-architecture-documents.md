@@ -58,19 +58,21 @@ Parts that exist in `dropout-kicad-library` link to their page in the library ca
 
 ## Diagrams
 
-> **Pending confirmation:** the user is reviewing the Node60 D2-vs-Mermaid comparison. Until confirmed, this is the proposed rule.
+**Decided (2026-10-21):** D2 for architecture diagrams. Every architecture has **two system views**:
 
-| Diagram | Tool | Why |
+| View | Shows | Conventions |
 |---|---|---|
-| System and block diagrams (domains, buses, power paths) | **D2** (dagre layout by default; ELK when right-angle routing reads better) | Best layout and styling control for dense block diagrams; every block carries a `link` to its section |
-| Sequences, state machines, simple flows | **Mermaid** | Good at these types; GitHub renders it natively in READMEs and PRs |
+| **Power** | Source → input protection → protected bus → always-on supplies, switched rails, switched loads; what each rail feeds | Line weight shows current: thick = high-current battery path, medium = protected-bus branches, thin = regulated rails; dashed = enable/supervision. Collapse series chains (e.g. TVS → FETs → shunt → FETs) into one block with the chain in its label, and use a bus node where one supply fans out, so the diagram stays a few columns deep. |
+| **Signals** (digital and analog) | Buses and signals between the controller and everything it talks to | Inputs on one side, controller in the middle, controlled devices on the other. Solid = digital (network in its own colour), dashed = analog into an ADC. Undirected analog lines with "→ ADC" in the label keep the layout one-sided. |
 
-Rules:
-- Top-to-bottom direction for system diagrams. Left-to-right chains of groups become unreadably wide.
-- Colors by domain, consistent across the site: battery / always-on / compute / network / switched loads.
-- Power paths are thick, rails medium, signals thin; every connection labeled.
-- **Every block links to its subsystem page.**
-- D2 renders at build time (the `d2` binary is installed in CI); Mermaid renders at build time too, not in the reader's browser.
+Rules for both:
+- Colours by domain, consistent across the site: battery, always-on, compute, network, measurement, switched loads.
+- **Every block links to its subsystem page.** Every connection is labelled.
+- Enables that would add extra layout depth (e.g. a PHY INH pin enabling a regulator) are written in the block label ("EN ← LAN8670 INH") rather than drawn as an edge.
+- Don't mix D2 grid layouts with the automatic layout; edges get routed through blocks.
+- Direction and default layout engine: **pending the user's choice** from the Node60 comparison (left-to-right vs top-down; dagre vs ELK).
+- **Mermaid** (proposed) for sequences and state machines, such as a power-state cycle, and for small diagrams in READMEs and PRs.
+- Diagrams render at build time (the `d2` binary is installed in CI), never in the reader's browser.
 
 ## Revisions
 
