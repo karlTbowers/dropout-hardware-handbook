@@ -70,7 +70,18 @@ Rules for both:
 - **Every block links to its subsystem page.** Every connection is labelled.
 - Enables that would add extra layout depth (e.g. a PHY INH pin enabling a regulator) are written in the block label ("EN ← LAN8670 INH") rather than drawn as an edge.
 - Don't mix D2 grid layouts with the automatic layout; edges get routed through blocks.
-- Direction and default layout engine: **pending the user's choice** from the Node60 comparison (left-to-right vs top-down; dagre vs ELK).
+- **Direction: left-to-right** for both views (`direction: right`).
+- **Layout engine per view**, set inside each `.d2` file so no command-line flag is needed:
+  - Power view: **dagre** (curved lines; reads like a power tree).
+  - Signals view: **ELK** (right-angle lines; the controller becomes a tall block that signals enter and leave like pins).
+  ```d2
+  vars: {
+    d2-config: {
+      layout-engine: elk   # dagre for the power view
+    }
+  }
+  ```
+- Keep each view about five columns deep so left-to-right stays readable at page width (decided 2026-10-21 after comparing all eight direction/engine combinations on Node60).
 - **Mermaid** (proposed) for sequences and state machines, such as a power-state cycle, and for small diagrams in READMEs and PRs.
 - Diagrams render at build time (the `d2` binary is installed in CI), never in the reader's browser.
 
