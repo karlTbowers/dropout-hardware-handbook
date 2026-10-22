@@ -1,6 +1,6 @@
 {
   "name": "dropout-hardware",
-  "version": "0.5.0",
+  "version": "0.6.0",
   "description": "DropOut's hardware design handbook as a Claude Code plugin: design process, part search and selection, repository conventions, and skills for starting boards and finding parts.",
   "author": {
     "name": "Karl Bowers",
@@ -8,5 +8,11 @@
   },
   "homepage": "https://github.com/karlTbowers/dropout-hardware-handbook",
   "repository": "https://github.com/karlTbowers/dropout-hardware-handbook",
-  "keywords": ["kicad", "hardware", "pcb", "electronics", "open-hardware"]
+  "keywords": [
+    "kicad",
+    "hardware",
+    "pcb",
+    "electronics",
+    "open-hardware"
+  ]
 }

@@ -20,7 +20,7 @@ DropOut designs open hardware in KiCad 10 following its handbook. The handbook l
 | Anything in the shared KiCad library | `04-library.md`, then the library repo's `add-part` skill |
 | Schematic capture, net naming, PCB layout | `05-schematic-pcb.md` |
 | CI, ERC/DRC, releases, fab packages | `06-ci-releases.md` |
-| Tools, MCPs, credentials | `07-tools.md` |
+| Tools, MCPs, credentials, setting up a new computer | `07-tools.md` |
 | Architecture documents, decision records, requirements/gates data, diagrams, the board docs site | `08-architecture-documents.md` |
 
 3. The **board's own `CLAUDE.md`** overrides the handbook only where it says so explicitly (e.g. a board that uses JLC assembly). Otherwise the handbook wins. If they conflict and the board's file doesn't explain why, ask the user.
@@ -28,7 +28,8 @@ DropOut designs open hardware in KiCad 10 following its handbook. The handbook l
 ## Non-negotiables (always apply, even without reading further)
 
 - The manufacturer datasheet is the authority. Never rely on memory for part data.
-- All repos are public: never commit credentials, NDA material, datasheet PDFs, or CAD files whose license forbids redistribution.
+- All repos are public except `dropout-vendor-docs`: never commit credentials, NDA material, datasheet PDFs, or CAD files whose license forbids redistribution to a public repo. Manufacturer documents are archived in the private `dropout-vendor-docs` repo by default, and public repos link to them.
+- Vendor websites go through Claude Code's built-in browser; Claude never types passwords.
 - Never print, commit, or `source` `~/.local/share/dropout/vendor-logins`.
 - Never add a KLC exception or change a handbook rule on your own; propose it to the user.
 - Price and stock figures are dated observations, never quotes.

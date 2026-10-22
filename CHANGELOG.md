@@ -2,6 +2,13 @@
 
 Every change to a DropOut rule, by plugin version (`.claude-plugin/plugin.json`).
 
+## 0.6.0 — 2026-10-22
+
+- **Vendor sites through Claude Code's built-in browser** (chapters 03, 07; `find-part`): it keeps the user's vendor sign-ins. Claude in Chrome becomes the fallback. Claude never types passwords; the user signs in once per site.
+- **Private `dropout-vendor-docs` repo** (chapters 00, 02, 03): every manufacturer document a part or board was built from is archived there by default (Git LFS, index with revision, source, SHA-256). Public repos link to documents, never copy them; symbols get an optional `Reference_Manual` link field. Check document revisions: distributor mirrors go stale.
+- **Library part pipeline** (chapter 04): `distributor_lookup.py`, `generate_footprint.py` (specs in `generators/`), `pintables/` + `symbolgen.py` (`parts/<MPN>/`), `check_pin_pad_match.py` in CI; KLC results are FAIL / WARN / WAIVED, with each WARN explained in the PR. Second-source pin cross-check and a visual review of every unit are required.
+- **Setting up a new Mac** (chapter 07): every tool in order: Homebrew `gh`, `uv`, `poppler`, `git-lfs`, `d2`, `node`; KiCad 10; repo clones; plugins; credentials; the library's `setup_tools.sh`; Konnect; vendor sign-ins; checks.
+
 ## 0.5.0 — 2026-10-22
 
 - **Library catalog in its own repo** (chapters 00, 02, 04, 07, 08): `dropout-library-catalog`, live at `https://karltbowers.github.io/dropout-library-catalog/`. The library repo holds only parts and their checks, so boards mounting it as a submodule don't carry the site. The catalog rebuilds on a `library-updated` dispatch from library CI and nightly.

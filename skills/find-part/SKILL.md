@@ -29,7 +29,8 @@ For each:
 - **Exact orderable MPN** including packaging suffix.
 - **DigiKey and Mouser:** PN, price at 1 and 1,000, stock, lifecycle; **Newark** as a third check.
 - **Second source:** a drop-in or near-drop-in alternative, or "none found".
-- Gated documents (reference manuals, pinout spreadsheets) through the user's Chrome, signing in with the matching lines from the credentials file only if needed.
+- Manufacturer documents (datasheets, reference manuals, pinout spreadsheets) through Claude Code's built-in browser, which keeps the user's vendor sign-ins. Never type a password; if a sign-in is needed, ask the user to sign in in the browser pane. Check the document's revision; distributor mirrors go stale.
+- Archive every document you rely on in the private `~/Dev/dropout-vendor-docs` repo with an index row (chapter 03, "Manufacturer documents"), by default.
 
 ## 4. Recommend and record
 
