@@ -32,6 +32,7 @@ DropOut designs open hardware in KiCad 10 following its handbook. The handbook l
 - Vendor websites go through Claude Code's built-in browser; Claude never types passwords.
 - Never print, commit, or `source` `~/.local/share/dropout/vendor-logins`.
 - Never add a KLC exception or change a handbook rule on your own; propose it to the user.
+- Never combine pins on a symbol: every package pin is its own visible pin (no pin stacks, no hidden pins).
 - Price and stock figures are dated observations, never quotes.
 - Board repos use only parts from `lib/dropout-kicad-library`.
 
