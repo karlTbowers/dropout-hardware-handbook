@@ -6,7 +6,10 @@ All DropOut boards use one shared library: [`dropout-kicad-library`](https://git
 
 - **KLC in full** (https://klc.kicad.org/), except the approved deviations in `klc-exceptions.yml`. CI runs the official KLC checker from kicad-library-tools and waives only those.
 - **Fully specified (atomic) parts:** one symbol = one orderable MPN, footprint linked. No generic symbols, including passives.
-- **DropOut fields** on every symbol: `Manufacturer`, `MPN`, `DigiKey_PN`, `Mouser_PN`, in addition to KLC's fields.
+- **DropOut fields** on every symbol: `Manufacturer`, `MPN`, `DigiKey_PN`, `Mouser_PN`, in addition to KLC's fields, each from a live lookup, never from memory.
+- **Passive values (D-45, decided 2026-10-22):** one `Value` format, ASCII only: `22pF`, `100nF`, `1uF`, `2.2uH`, `0R`, `120R`, `4.7k`, `10k`, `1M`, `10mR`, `600R@100MHz` (number 1–999 with the largest SI prefix that keeps it there, decimal point not `4k7`, `u` for micro, always ending in a letter). Voltage, tolerance, dielectric and power go in their own fields `Voltage`, `Tolerance`, `Dielectric`, `Power`, never in `Value`. Rules in [chapter 05](05-schematic-pcb.md).
+- **Large MCU symbols are split into units by datasheet function group (D-14, decided 2026-10-22):** ports, supplies and grounds, ADC, debug, and so on. Library symbols are board-independent, so the split follows the datasheet, not one board's firmware; each board notes its own peripheral use on the sheet.
+- **Pin names never overprint (D-47, decided 2026-10-22).** A box symbol is sized from its pin-name text, not its pin count: tall and wide enough that no pin name runs into another, including a top or bottom pin's name against the side pins' names. Grow the body downward first so existing pins keep their positions. (KiCad 10 draws a 1.27 mm pin name at about 1.27 mm per character, plus the 1.016 mm name offset.)
 - **Library names** `DropOut_<Category>`, an approved exception so they never collide with KiCad's stock libraries.
 - **3D model paths** `${KIPRJMOD}/lib/dropout-kicad-library/3dmodels/...`, an approved exception that keeps models pinned per board revision.
 - **Never silently change a released land pattern.**
@@ -24,6 +27,8 @@ Use the library repo's `add-part` skill (Claude Code in `~/Dev/dropout-kicad-lib
 6. A PR titled `Add <MPN>`.
 
 `scripts/setup_tools.sh` in the library installs everything these scripts need ([chapter 07](07-tools.md#setting-up-a-new-mac)).
+
+**Follow-up (2026-10-22):** the library repo still needs these rules in `docs/CONTRIBUTING.md` and its checks: the D-45 value format and the `Voltage` / `Tolerance` / `Dielectric` / `Power` fields on passives, and a pin-name clearance check (D-47) in `symbolgen.py` and library CI.
 
 ## Exceptions
 

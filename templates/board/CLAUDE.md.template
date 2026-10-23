@@ -10,6 +10,16 @@
 - Architecture: the Starlight site in `docs/` (handbook chapter 08); facts live in `docs/src/data/`. Its decisions are the baseline; don't change one without the user's agreement.
 - Created {{DATE}}.
 
+## Schematic project answers
+
+Asked at the start of schematic capture (handbook chapter 05). Mark an unanswered one "default".
+
+- 0201 passives allowed: not asked yet (default: no, 0402 minimum)
+- Signal test points: not asked yet (default: 1 mm exposed pad; ground test points are probe loops)
+- 0R debug resistors: not asked yet (default: every regulator output)
+- Debug header: not asked yet (default: 2x5 1.27 mm Cortex Debug)
+- Net names: chapter 05 rules (or record here the existing names this board keeps, rule O-1)
+
 ## Deviations from the handbook
 
 None.

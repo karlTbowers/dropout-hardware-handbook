@@ -30,7 +30,7 @@ This handbook is how DropOut designs hardware. Every device follows it, whoever 
 | 02 | [Repositories and workflow](02-repositories.md) | Repo layout, submodules, branches, tags, versioning |
 | 03 | [Part search and selection](03-part-search.md) | How parts are found, verified, and chosen, and with which tools |
 | 04 | [Library](04-library.md) | How the shared KiCad library works |
-| 05 | [Schematic and PCB conventions](05-schematic-pcb.md) | Sheets, nets, test points, layout defaults |
+| 05 | [Schematic and PCB conventions](05-schematic-pcb.md) | Schematic standard (naming, parts, derating, debug, drawing rules), layout defaults |
 | 06 | [CI and releases](06-ci-releases.md) | Checks on every push; what a release contains |
 | 07 | [Tools and credentials](07-tools.md) | The toolchain, what was rejected and why, credentials handling, setting up a new Mac |
 | 08 | [Architecture and board documentation](08-architecture-documents.md) | Starlight docs sites, data-driven architecture, diagrams, decision records |
