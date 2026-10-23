@@ -2,6 +2,12 @@
 
 Every change to a DropOut rule, by plugin version (`.claude-plugin/plugin.json`).
 
+## 0.8.0 — 2026-10-22
+
+- **Schematic standard adopted** from [charlesh97/ee-skills](https://github.com/charlesh97/ee-skills/tree/e45935f58e3915a6fe891818fd0d49ef9114db4f/skills/ee-schematic-rules) `ee-schematic-rules`, restated in DropOut's words (the source has no license) with its rule IDs kept (chapter 05; new `schematic-rules` skill). All of its `SKILL.md` and drawing rules D-01…D-61 except D-03. DropOut changes: rails named by voltage, with existing names kept per board (O-1; Node60 keeps its Rev A names); active-low suffix `_L` (replaces the proposed `_N`; `_P`/`_N` reserved for differential pairs); distributor fields stay `DigiKey_PN`/`Mouser_PN`, with `LCSC`, JLC-basic preference and `CONSIGNED` only on JLC-assembled boards; junction temperature ≤ Tj(max) − 25 °C; the source's fixed dielectric rule (X7R to 1 µF, X5R from 1 µF) replaced by three more project questions (ambient range and grade, environment, allowed dielectrics), so capacitor temperature ratings are set per board (Node60: no X5R); the seven project questions recorded in the board's `CLAUDE.md`; D-14 MCU units split by datasheet function group in the library; D-25 uses hierarchical labels and sheet pins for off-sheet nets.
+- **Fully specified parts, never from memory** (chapter 03); **D-45 passive value format and fields, D-14 and D-47 as library rules** (chapter 04).
+- **Every net is named, enforced in CI (O-2)** and **ERC zero or justified before handoff (D-52)** (chapter 06). Board template: `check_schematic.py` fails on `Net-(…)` names and on `unconnected-(…)` pins without a no-connect flag; `CLAUDE.md.template` gains "Schematic project answers".
+
 ## 0.7.0 — 2026-10-22
 
 - **Never combine pins on a symbol** (chapters 04, 05; `dropout-standards`): every package pin gets its own visible pin, including repeated power and ground pins. No KiCad native pin stacks and no hidden stacked pins, even where KLC S4.3 allows them. Stricter than KLC; enforced by library CI (`check_pin_pad_match.py`). In schematics, every supply and ground pin is wired explicitly.
