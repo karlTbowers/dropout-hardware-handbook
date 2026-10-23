@@ -18,6 +18,9 @@ Asked at the start of schematic capture (handbook chapter 05). Mark an unanswere
 - Signal test points: not asked yet (default: 1 mm exposed pad; ground test points are probe loops)
 - 0R debug resistors: not asked yet (default: every regulator output)
 - Debug header: not asked yet (default: 2x5 1.27 mm Cortex Debug)
+- Ambient temperature range and grade: not asked yet (no default; from the architecture's requirements)
+- Environment (enclosure, humidity, vibration, coating): not asked yet (no default)
+- Capacitor dielectrics allowed: not asked yet (no default; rated range must cover the ambient range)
 - Net names: chapter 05 rules (or record here the existing names this board keeps, rule O-1)
 
 ## Deviations from the handbook

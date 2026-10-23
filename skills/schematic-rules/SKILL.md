@@ -13,12 +13,15 @@ The board's own `CLAUDE.md` overrides these only where it says so (e.g. JLC asse
 
 ## Start of capture
 
-Ask the four project questions and record the answers in the board's `CLAUDE.md` ("Schematic project answers"). An unanswered one takes the default and is written down **as a default**.
+Ask the project questions and record the answers in the board's `CLAUDE.md` ("Schematic project answers"). An unanswered question with a default takes it and is written down **as a default**. Questions 5-7 have no default: don't start capture until they are answered.
 
 1. 0201 passives allowed? Default no (0402 minimum).
 2. Signal test point form? Default 1 mm exposed pad.
 3. 0R debug resistors where? Default every regulator output.
 4. Debug header? Default 2x5 1.27 mm Cortex Debug.
+5. Ambient temperature range and qualification grade of the end device? From the architecture's requirements, or ask.
+6. Environment (enclosure, humidity/condensation, vibration, conformal coating)? Ask.
+7. Allowed capacitor dielectrics (X7R, X7S, X8R, C0G; is X5R allowed)? Chosen from 5 and 6: rated range covers ambient plus self-heating.
 
 ## Sheets and designators
 
@@ -44,12 +47,12 @@ Ask the four project questions and record the answers in the board's `CLAUDE.md`
 - Fully specified: Manufacturer, MPN, `DigiKey_PN`, `Mouser_PN`, package, value, tolerance, voltage, dielectric, temperature range, and whatever it was chosen for. Never fill an MPN or distributor number from memory: live lookup or datasheet, or leave it empty and say so.
 - Commodity passives are substitutable; parts chosen for an electrical property are binding and marked so. Consolidate nearby values.
 - JLC-assembled boards only (named in the board's `CLAUDE.md`): `LCSC` field from a live lookup, JLC basic passives preferred, `CONSIGNED` plus a `Consigned` field for parts JLC can't supply (D-46).
-- Capacitors: 0402 default through 1 uF; smallest package meeting capacitance and voltage after DC bias; X7R to 1 uF, X5R allowed from 1 uF, C0G/NP0 for timing/filter/oscillator values, never Y5V/Z5U; rating at least 2x working voltage after DC bias. The temperature range must meet the board's grade.
+- Capacitors: 0402 default through 1 uF; smallest package meeting capacitance and voltage after DC bias; dielectrics per the board's answer to question 7, C0G/NP0 for timing/filter/oscillator values, never Y5V/Z5U; rating at least 2x working voltage after DC bias. The temperature range must meet the board's grade.
 - Resistors: 5 %, 0402, E24 unless the circuit needs better.
 
 ## Derating
 
-Ceramic caps <= 50 % rated V after DC bias; MOSFETs <= 80 % Vds, <= 50 % Id; resistors <= 60 % power; electrolytic/polymer <= 80 % ripple current; junction <= Tj(max) - 25 C at the board's maximum ambient (DropOut runs +125 C); inductors on saturation current vs peak current (load + half ripple). Size 0R debug resistors for their current (0402 ~1 A). No relaxing on bring-up boards.
+Ceramic caps <= 50 % rated V after DC bias; MOSFETs <= 80 % Vds, <= 50 % Id; resistors <= 60 % power; electrolytic/polymer <= 80 % ripple current; junction <= Tj(max) - 25 C at the board's maximum ambient (question 5; Node60 +125 C); inductors on saturation current vs peak current (load + half ripple). Size 0R debug resistors for their current (0402 ~1 A). No relaxing on bring-up boards.
 
 ## Design for debug
 

@@ -14,9 +14,9 @@
 
 Where a rule gives a reason, the reason decides the cases the rule didn't foresee.
 
-### Before capture: four project questions
+### Before capture: project questions
 
-Ask these at the start of schematic capture; the answers depend on the board. Record each answer in the board's `CLAUDE.md` (section "Schematic project answers"). If a question isn't answered, take the default and record it **as a default**, not as a decision, so nobody mistakes it for one. **(DropOut:** recorded in `CLAUDE.md`, not in separate `project.yaml` / `open_items.yaml` files.)
+Ask these at the start of schematic capture; the answers depend on the board. Record each answer in the board's `CLAUDE.md` (section "Schematic project answers"). If a question with a default isn't answered, take the default and record it **as a default**, not as a decision, so nobody mistakes it for one. Questions 5–7 have no default: capture doesn't start until they are answered. **(DropOut:** recorded in `CLAUDE.md`, not in separate `project.yaml` / `open_items.yaml` files.)
 
 | # | Question | Default |
 |---|---|---|
@@ -24,8 +24,13 @@ Ask these at the start of schematic capture; the answers depend on the board. Re
 | 2 | What is a signal test point? | A 1 mm exposed pad (smaller only if density forces it) |
 | 3 | Where do 0R debug resistors go? | In every regulator output |
 | 4 | Which debug header? | 2×5 1.27 mm Cortex Debug |
+| 5 | What ambient temperature range must the end device work over, and to what qualification grade (e.g. AEC-Q100/Q200 Grade 1, −40…+125 °C)? | None: take it from the architecture's requirements, or ask |
+| 6 | What environment does the end device live in (enclosure, humidity and condensation, vibration, conformal coating)? | None: ask |
+| 7 | Which capacitor dielectrics are allowed (e.g. X7R, X7S, X8R, C0G; is X5R allowed)? | None: chosen from 5 and 6 so the rated temperature range covers the ambient range plus self-heating |
 
-Node60 (2026-10-22): all four defaults. Ground test points are probe loops on every board (Design for debug, below).
+**(DropOut, 2026-10-22)** Questions 5–7 replace the source's fixed dielectric rule: capacitor temperature ratings depend on where the device runs, so each board decides them.
+
+Node60 (2026-10-22): questions 1–4 take the defaults; 5 is Grade 1, −40…+125 °C (architecture requirements); 7: **no X5R**, higher-temperature dielectrics only (exact set to be recorded at capture); 6 not yet asked. Ground test points are probe loops on every board (Design for debug, below).
 
 ### Sheet structure
 
@@ -107,7 +112,7 @@ No net in the netlist keeps a name KiCad made up (`Net-(R201-Pad2)`): every node
 - **0402 is the default capacitor package**, bypass included, up to 1 µF. Choose the package by search, not by table: the smallest one that meets both the capacitance and the voltage rating after DC-bias derating (a 1 µF 0402 exists at 16 V, not at 50 V).
 - **Decoupling uses the smallest package on purpose**, so it sits closer to the pin; layout must follow through.
 - **Resistors:** 5 %, 0402, E24 by default; tighter only where the circuit needs it.
-- **Dielectric:** X7R up to 1 µF; X5R allowed from 1 µF; C0G/NP0 where the value sets a timing, filter, or oscillator; never Y5V or Z5U (they lose most of their capacitance over temperature and bias). The part's temperature range must still meet the board's grade ([chapter 03](03-part-search.md) rule 2).
+- **Dielectric (DropOut):** set per board by project questions 5–7, not by a fixed rule; the part's rated temperature range must cover the board's ambient range ([chapter 03](03-part-search.md) rule 2). On every board: C0G/NP0 where the value sets a timing, filter, or oscillator, and never Y5V or Z5U (they lose most of their capacitance over temperature and bias).
 - **Capacitor voltage rating:** at least 2× the working voltage, judged after DC-bias derating.
 - **Value format and fields:** D-45, below and in [chapter 04](04-library.md).
 
@@ -124,7 +129,7 @@ Every part carrying voltage, current or power is derated:
 | Junction temperature **(DropOut)** | ≤ Tj(max) − 25 °C at the board's maximum ambient |
 | Inductor | saturation current ≥ peak current (load + half the ripple), not RMS against average |
 
-- **(DropOut)** The junction limit is a margin below each part's own maximum rather than the source's fixed 110 °C, because DropOut boards run at +125 °C ambient (AEC-Q100 Grade 1), where 110 °C can't be met.
+- **(DropOut)** The junction limit is a margin below each part's own maximum rather than the source's fixed 110 °C, because a board's maximum ambient (project question 5) can be at or above 110 °C; Node60 runs at +125 °C.
 - **0R debug resistors are sized for their current**, taken from the power tree (a 0402 0R carries about 1 A).
 - Derating applies on bring-up boards too.
 
