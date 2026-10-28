@@ -50,7 +50,7 @@ git submodule add https://github.com/karlTbowers/dropout-kicad-library.git lib/d
 
 ## 4. KiCad project
 
-Create `<board>.kicad_pro`, `.kicad_sch`, and `.kicad_pcb` at the repo root: with Konnect if KiCad is running, otherwise ask the user to create a new project named `<board>` in that folder. Keep the template's `sym-lib-table` and `fp-lib-table` (they point into `lib/`). Do not commit `*.kicad_prl`.
+Create `<board>.kicad_pro`, `.kicad_sch`, and `.kicad_pcb` at the repo root: ask the user to create a new KiCad project named `<board>` in that folder. Keep the template's `sym-lib-table` and `fp-lib-table` (they point into `lib/`). Do not commit `*.kicad_prl`.
 
 Then apply the schematic conventions (`../../handbook/05-schematic-pcb.md`):
 - In `<board>.kicad_pro`, set `"schematic": {"annotation": {"method": 1}}` (first free number after sheet number × 100).

@@ -2,6 +2,10 @@
 
 Every change to a DropOut rule, by plugin version (`.claude-plugin/plugin.json`).
 
+## 0.9.0 — 2026-10-28
+
+- **Konnect (KiCad MCP) removed from the toolchain** (chapter 07; `new-board`): no longer installed or registered when setting up a Mac, and listed under "Considered and rejected". `new-board` asks the user to create the KiCad project instead of creating it through Konnect.
+
 ## 0.8.0 — 2026-10-22
 
 - **Schematic standard adopted** from [charlesh97/ee-skills](https://github.com/charlesh97/ee-skills/tree/e45935f58e3915a6fe891818fd0d49ef9114db4f/skills/ee-schematic-rules) `ee-schematic-rules`, restated in DropOut's words (the source has no license) with its rule IDs kept (chapter 05; new `schematic-rules` skill). All of its `SKILL.md` and drawing rules D-01…D-61 except D-03. DropOut changes: rails named by voltage, with existing names kept per board (O-1; Node60 keeps its Rev A names); active-low suffix `_L` (replaces the proposed `_N`; `_P`/`_N` reserved for differential pairs); distributor fields stay `DigiKey_PN`/`Mouser_PN`, with `LCSC`, JLC-basic preference and `CONSIGNED` only on JLC-assembled boards; junction temperature ≤ Tj(max) − 25 °C; the source's fixed dielectric rule (X7R to 1 µF, X5R from 1 µF) replaced by three more project questions (ambient range and grade, environment, allowed dielectrics), so capacitor temperature ratings are set per board (Node60: no X5R); the seven project questions recorded in the board's `CLAUDE.md`; D-14 MCU units split by datasheet function group in the library; D-25 uses hierarchical labels and sheet pins for off-sheet nets.
