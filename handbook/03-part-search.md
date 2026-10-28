@@ -24,7 +24,7 @@ How DropOut finds, verifies, and chooses parts, and which tool is used for each 
 2. **Mouser**: second source and price/stock comparison.
 3. **Newark / element14**: third check.
 
-JLCPCB/LCSC are not in the default flow. If a board uses JLC assembly, that board's `CLAUDE.md` says so and adds LCSC part numbers.
+JLCPCB/LCSC are not in the default flow. If a board uses JLC assembly, that board's `CLAUDE.md` says so; that board then also fills an `LCSC` field from a live lookup with stock confirmed, prefers JLC basic parts for passives, and marks a part JLC can't supply `CONSIGNED` ([chapter 05](05-schematic-pcb.md), D-46).
 
 ## Selection rules
 
@@ -36,6 +36,12 @@ A part is acceptable only when all of these hold, or the exception is written in
 4. **Orderable now.** Stock at DigiKey or Mouser, or a known lead time that fits the schedule. Zero-stock parts are flagged as procurement risks in the architecture status grid.
 5. **Second source considered.** For each key part, record a drop-in or near-drop-in alternative, or state that none exists.
 6. **Exact orderable MPN.** Including packaging suffix (`TPS2HCS08AQPWPRQ1`, not `TPS2HCS08-Q1`).
+7. **Fully specified** (decided 2026-10-22, [chapter 05](05-schematic-pcb.md)). Every part has a real MPN and every descriptor it is chosen on: package, value, tolerance, voltage rating, dielectric (ceramics), temperature range, and anything else it was chosen for (tempco, current rating, saturation current, ESR). No generic line items ("100nF 0402").
+8. **Derated** to chapter 05's limits, with the junction temperature at most Tj(max) − 25 °C at the board's maximum ambient.
+
+**Never fill an MPN or a distributor part number from memory.** A remembered number is a lead until a live distributor lookup or the manufacturer datasheet confirms it in the same session. Until then, leave the field blank and say why: a blank field is noticed and filled, a guessed one is ordered.
+
+Commodity passives may be chosen on price and marked substitutable. A part chosen for an electrical property (precision, tempco, matching, dielectric) is binding and marked so.
 
 ## Recording what was found
 

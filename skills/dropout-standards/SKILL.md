@@ -18,7 +18,8 @@ DropOut designs open hardware in KiCad 10 following its handbook. The handbook l
 | Repo layout, submodules, branches, tags, versioning | `02-repositories.md` |
 | Finding, comparing, or choosing parts; prices, stock, sourcing | `03-part-search.md` (or use the `find-part` skill) |
 | Anything in the shared KiCad library | `04-library.md`, then the library repo's `add-part` skill |
-| Schematic capture, net naming, PCB layout | `05-schematic-pcb.md` |
+| Schematic capture or review, net and designator naming, passives, derating, test points, drawing rules | `05-schematic-pcb.md`, and load the `schematic-rules` skill |
+| PCB layout | `05-schematic-pcb.md` |
 | CI, ERC/DRC, releases, fab packages | `06-ci-releases.md` |
 | Tools, MCPs, credentials, setting up a new computer | `07-tools.md` |
 | Architecture documents, decision records, requirements/gates data, diagrams, the board docs site | `08-architecture-documents.md` |
@@ -35,6 +36,7 @@ DropOut designs open hardware in KiCad 10 following its handbook. The handbook l
 - Never combine pins on a symbol: every package pin is its own visible pin (no pin stacks, no hidden pins).
 - Price and stock figures are dated observations, never quotes.
 - Board repos use only parts from `lib/dropout-kicad-library`.
+- Every schematic net is named; never fill an MPN or distributor part number from memory.
 
 ## When the user sets a new standing rule
 

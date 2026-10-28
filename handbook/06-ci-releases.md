@@ -12,8 +12,16 @@
 
 Runs in the official `kicad/kicad:10.0` container (`--user root`), with the library submodule checked out.
 
-- **Every push and PR:** schematic conventions (`scripts/check_schematic.py`: sheet files, page numbers, reference designators; [chapter 05](05-schematic-pcb.md)), ERC (errors fail), DRC with schematic parity (errors fail), and the full output set (PDF, BOM, Gerbers, drill, positions, STEP), uploaded as a workflow artifact.
+- **Every push and PR:** schematic conventions (`scripts/check_schematic.py`: sheet files, page numbers, reference designators, net names; [chapter 05](05-schematic-pcb.md)), ERC (errors fail), DRC with schematic parity (errors fail), and the full output set (PDF, BOM, Gerbers, drill, positions, STEP), uploaded as a workflow artifact.
 - **Skips cleanly** until `<board>.kicad_pro` exists. DRC, the PCB outputs, and `rev-*` releases also wait until the PCB has a board outline on Edge.Cuts (an empty board fails DRC); ERC, the schematic checks, the PDF, and the BOM run from the start.
+
+### Every net is named (O-2)
+
+**Decided (2026-10-22).** `scripts/check_schematic.py` fails on any net that still has a KiCad auto-generated name (`Net-(R201-Pad2)`): label it. A net named `unconnected-(…)` passes only when every pin on it has a no-connect flag or is a no-connect pin; otherwise the pin was left unwired. A dropped label shows up as an auto-generated name, so this also catches the failure a netlist diff (D-50) looks for.
+
+### ERC before handoff (D-52)
+
+**Decided (2026-10-22).** CI fails on ERC errors on every push. Before a schematic is handed to review or layout, and before a `rev-*` tag, ERC is **zero at every severity**, or each remaining item is excluded in KiCad with an exclusion comment saying why. Fix the schematic rather than lowering a severity in the project settings.
 
 ## Board documentation site (`docs.yml`)
 
@@ -35,7 +43,7 @@ CI then attaches the fab package to a GitHub Release:
 - pick-and-place position file (CSV, mm, both sides)
 - STEP model of the assembled board
 
-Before tagging: ERC/DRC clean, BOM re-sourced against live stock ([chapter 03](03-part-search.md)), reviews done ([chapter 01](01-design-process.md)).
+Before tagging: ERC zero or justified (D-52), DRC clean, BOM re-sourced against live stock ([chapter 03](03-part-search.md)), reviews done ([chapter 01](01-design-process.md)).
 
 ## CI conventions
 
