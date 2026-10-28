@@ -8,7 +8,6 @@
 | **Claude Code** on the Mac, in `~/Dev` | The main way Claude works on DropOut hardware: direct file access, no network allowlist |
 | **dropout-hardware-handbook** plugin (this repo) | Skills: `dropout-standards`, `find-part`, `new-board` |
 | **kicad-happy** plugin | Distributor APIs (`digikey`, `mouser`, `element14`), design analysis (`kicad`, `bom`, `spice`, `emc`) |
-| **Konnect** (KiCad 10 MCP, installed on the Mac) | Live KiCad project and board edits through KiCad's IPC API; needs KiCad running |
 | **Built-in browser** (Claude Code desktop app) | Sign-in-gated manufacturer and CAD sites; the user signs in once per site and the profile keeps it |
 | **Claude in Chrome** | Fallback browser, using the user's own Chrome |
 | **Homebrew** | Installs the command-line tools below |
@@ -34,6 +33,7 @@
 |---|---|
 | KiCAD-Prism | Reviewed by the user; not used. The catalog site is built with Astro. |
 | kistack | Not used; DropOut writes its own skills. |
+| Konnect (KiCad 10 MCP) | Used until 2026-10-28; removed from the toolchain. The user creates KiCad projects in KiCad. |
 | Hugo, Jekyll, seite | Astro chosen for data-driven pages and the interactive 3D viewer. |
 | Hand-written single-file HTML architecture documents | Replaced by Starlight sites (2026-10-21): not diffable, raster diagrams, facts duplicated, no traceability. |
 | pcbparts-mcp, Nexar, datasheet MCPs | See [chapter 03](03-part-search.md#considered-and-not-used). |
@@ -98,12 +98,8 @@ Everything Claude needs to work on DropOut hardware, in order. Claude can run ea
    ```bash
    ~/Dev/dropout-kicad-library/scripts/setup_tools.sh
    ```
-10. **user** Konnect (KiCad MCP): install it from KiCad's Plugin and Content Manager, then register it with Claude Code:
-    ```bash
-    claude mcp add konnect -s user -- ~/Documents/KiCad/10.0/3rdparty/plugins/com_github_mixelpixx_konnect/bin/konnect
-    ```
-11. **user** Vendor sign-ins: in the Claude app's built-in browser, sign in once to nxp.com, ti.com, ultralibrarian.com, snapeda.com, and newark.com.
-12. Check it all:
+10. **user** Vendor sign-ins: in the Claude app's built-in browser, sign in once to nxp.com, ti.com, ultralibrarian.com, snapeda.com, and newark.com.
+11. Check it all:
     ```bash
     ~/Dev/dropout-kicad-library/scripts/setup_tools.sh --check
     python3 ~/Dev/dropout-kicad-library/scripts/distributor_lookup.py S32K344EHT1MMMST
