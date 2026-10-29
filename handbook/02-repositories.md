@@ -43,6 +43,10 @@ Every board mounts the library at exactly `lib/dropout-kicad-library`. Footprint
   git -C lib/dropout-kicad-library pull origin main
   git add lib/dropout-kicad-library && git commit -m "Update DropOut library"
   ```
+- **After picking up library changes** (lessons from Node60, 2026-10-28):
+  - Add every new symbol or footprint library to the board's `sym-lib-table` and `fp-lib-table`. ERC reports a library missing from the tables (`lib_symbol_issues`, `footprint_link_issues`); CI's error-level ERC does not.
+  - KiCad keeps a copy of each placed symbol in the schematic. Where the library changed a field of a placed part (manufacturer name, description, notes), update the schematic's copy and the instances, then check that every placed DropOut symbol matches its library entry.
+  - A board may pin a library pull request's head commit while that PR is open; re-pin to the merge commit before the board PR merges.
 - A board revision ships with whatever library commit was pinned when it was tagged. Old revisions keep opening correctly forever.
 
 ## Branches, pull requests, tags

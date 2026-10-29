@@ -116,6 +116,20 @@ No net in the netlist keeps a name KiCad made up (`Net-(R201-Pad2)`): every node
 - **Capacitor voltage rating:** at least 2× the working voltage, judged after DC-bias derating.
 - **Value format and fields:** D-45, below and in [chapter 04](04-library.md).
 
+### Reference circuits (DropOut)
+
+Lessons from Node60's 10BASE-T1S interface (DEC-012 rev. B, DEC-017; 2026-10-29).
+
+- **Interface circuits follow the IC maker's reference.** Use the application note the data sheet points to (LAN8670 → Microchip AN1718) and the interface standard's reference schematic (OPEN Alliance), and compare part by part, **including the order along the signal path**, not only the values. Node60 first had the T1S choke and DC-block capacitors in the reverse order.
+- **Check the maker's evaluation-board schematic as a third source**, but note which circuit variant it uses: Microchip's LAN8670 boards use a demo network the app note reserves for another case. The app note wins over the board.
+- **Read the standard's component table, not just its figure.** OPEN Alliance's T1S end termination is two 50 Ω ±1 % legs to a centre tap with 100 nF and 100 kΩ to ground, not one 100 Ω resistor.
+- **Record every deviation** from the reference in a decision record, with the reason.
+
+### Switched and configurable hardware (DropOut)
+
+- **A switch in series with a precision element** (termination, divider, gain resistor) adds its on-resistance, and that resistance's drift over temperature and signal level, to the element's tolerance. Its off-state capacitance adds to the node's capacitance budget. Work out both before choosing a switch type: photorelays and analog switches trade low resistance against low capacitance, and single-supply switches clip signals that swing below ground. On a bus line, also check the switch survives the line's fault voltages (short to battery).
+- **Settings that must hold while the board sleeps or is unpowered** (bus termination, address or mode selection) use latching or non-volatile parts, never a switch that falls back when its drive is gone. Firmware stores the intended state and re-applies it at every cold boot, because a latching part may ship, or be shocked, into the other state. Document the shipped state on the sheet and choose it as the safe default.
+
 ### Derating
 
 Every part carrying voltage, current or power is derated:
@@ -194,6 +208,7 @@ Every part carrying voltage, current or power is derated:
 
 - **D-50** After redrawing or restructuring a schematic, diff the netlist against the previous revision and account for every change. A tidy page can still swap two connector pins.
 - **D-51** Render every sheet and look at it; ERC passes a page with one part drawn over another.
+  - **(DropOut)** KiCad mirrors a mirrored symbol's field justification too: a field justified right on a symbol with `(mirror y)` renders left-justified. Check the reference and value of every mirrored symbol on the rendered sheet, whether it was placed by hand or by a script.
 - **D-52** ERC is zero before handoff, or each remaining item has a written justification ([chapter 06](06-ci-releases.md)). Correct the design rather than downgrading the ERC rule.
 
 **File hygiene**

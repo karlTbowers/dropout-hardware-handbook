@@ -31,7 +31,7 @@ JLCPCB/LCSC are not in the default flow. If a board uses JLC assembly, that boar
 A part is acceptable only when all of these hold, or the exception is written into the architecture document:
 
 1. **Datasheet verified.** Every number used in the design comes from the manufacturer datasheet, not a distributor summary.
-2. **Qualification matches the requirement.** Automotive designs require AEC-Q100 (ICs), AEC-Q101 (discretes), or AEC-Q200 (passives) at the grade the requirements state (Node60: Grade 1, −40…+125 °C).
+2. **Qualification matches the requirement.** Automotive designs require AEC-Q100 (ICs), AEC-Q101 (discretes), or AEC-Q200 (passives) at the grade the requirements state (Node60: Grade 1, −40…+125 °C). Parts with no AEC qualification to check (connectors, relays, terminals, crystals from some makers) still need a rated operating range that covers the board's ambient: most small signal relays are rated only to +85 °C, and a +125 °C version may be a separate order code (Omron G6K-…-T1; found on Node60, 2026-10-28).
 3. **Active lifecycle.** Not obsolete, NRND, or last-time-buy.
 4. **Orderable now.** Stock at DigiKey or Mouser, or a known lead time that fits the schedule. Zero-stock parts are flagged as procurement risks in the architecture status grid.
 5. **Second source considered.** For each key part, record a drop-in or near-drop-in alternative, or state that none exists.
