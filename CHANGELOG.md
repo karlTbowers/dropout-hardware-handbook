@@ -2,6 +2,10 @@
 
 Every change to a DropOut rule, by plugin version (`.claude-plugin/plugin.json`).
 
+## 0.10.1 — 2026-10-29
+
+- Chapter 05: Node60's answers to project questions 6 (environment) and 7 (dielectrics) recorded in the worked example. No rule change.
+
 ## 0.10.0 — 2026-10-29
 
 Lessons from Node60's schematic work (DEC-012 rev. B, DEC-016, DEC-017).
