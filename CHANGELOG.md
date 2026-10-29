@@ -2,6 +2,16 @@
 
 Every change to a DropOut rule, by plugin version (`.claude-plugin/plugin.json`).
 
+## 0.10.0 — 2026-10-29
+
+Lessons from Node60's schematic work (DEC-012 rev. B, DEC-016, DEC-017).
+
+- **Reference circuits** (chapter 05): interface circuits follow the IC maker's application note and the interface standard's reference schematic, compared part by part *including order along the signal path*. Evaluation boards are a third source but may use another variant; read the standard's component table, not just its figure; record deviations in a decision.
+- **Switched and configurable hardware** (chapter 05): a series switch's on-resistance and drift count against a precision element's tolerance, and its off-capacitance against the node's budget; check signal swing and fault voltages too. Settings that must hold through sleep or power-off use latching or non-volatile parts, firmware re-applies the stored state at cold boot, and the shipped state is the documented safe default.
+- **Mirrored symbols mirror field justification** (chapter 05, under D-51): check reference and value placement on the rendered sheet.
+- **Temperature range for parts without AEC qualification** (chapter 03, rule 2): connectors, relays and terminals still need a rated range covering the board's ambient; most small signal relays stop at +85 °C.
+- **After a library update** (chapter 02): add new libraries to `sym-lib-table`/`fp-lib-table`, refresh placed symbols whose library fields changed, and re-pin from a library PR's head to its merge commit before the board PR merges.
+
 ## 0.9.0 — 2026-10-28
 
 - **Konnect (KiCad MCP) removed from the toolchain** (chapter 07; `new-board`): no longer installed or registered when setting up a Mac, and listed under "Considered and rejected". `new-board` asks the user to create the KiCad project instead of creating it through Konnect.

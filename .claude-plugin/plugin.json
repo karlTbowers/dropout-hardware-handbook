@@ -1,6 +1,6 @@
 {
   "name": "dropout-hardware",
-  "version": "0.9.0",
+  "version": "0.10.0",
   "description": "DropOut's hardware design handbook as a Claude Code plugin: design process, part search and selection, repository conventions, and skills for starting boards, finding parts, and schematic rules.",
   "author": {
     "name": "Karl Bowers",
