@@ -30,7 +30,7 @@ Ask these at the start of schematic capture; the answers depend on the board. Re
 
 **(DropOut, 2026-10-22)** Questions 5–7 replace the source's fixed dielectric rule: capacitor temperature ratings depend on where the device runs, so each board decides them.
 
-Node60 (2026-10-22): questions 1–4 take the defaults; 5 is Grade 1, −40…+125 °C (architecture requirements); 7: **no X5R**, higher-temperature dielectrics only (exact set to be recorded at capture); 6 not yet asked. Ground test points are probe loops on every board (Design for debug, below).
+Node60: questions 1–4 take the defaults (2026-10-22); 5 is Grade 1, −40…+125 °C (architecture requirements); 6 is a sealed enclosure (IP67 target) in a vehicle, condensation possible, automotive vibration and shock, no conformal coating (2026-10-29); 7 is X7R, X7S, X8R and C0G only, no X5R (2026-10-29). Ground test points are probe loops on every board (Design for debug, below).
 
 ### Sheet structure
 
