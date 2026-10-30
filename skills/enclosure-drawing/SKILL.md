@@ -69,6 +69,10 @@ In the board's `docs/` (the handbook's board template, chapter 08):
 - Spot-check two numbers against the PCB: one cutout centre and the outside size.
 - Record in the board's `CLAUDE.md` which files hold the positions and the assumptions, and that the SVGs are generated.
 
+## Several candidate designs
+
+While the enclosure is undecided, a board can keep several versions side by side. Hold each version's layout as a parameter set next to the placement (one `VERSIONS` dict), make `spec(version)` take it, and have a small driver write each spec as JSON and run the engine into `src/diagrams/build/<version>/`. Pass that folder to `EnclosureTable` (`dir`) and prefix the `Drawing` names (`v2/enclosure-top`). The PCB holds one version at a time. Node60's `scripts/enclosure_versions.py` and its Enclosure options pages are the worked example.
+
 ## Updating later
 
 Moving a connector or changing an assumption needs nothing here: edit the placement or the adapter, rebuild the docs. Re-run `--check` in the same change. New cutout shapes go into the engine in this skill (and `references/spec.md`, bumping `ENGINE_VERSION` if the format changes), then into each board by copying.
