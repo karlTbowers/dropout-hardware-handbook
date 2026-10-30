@@ -1,4 +1,4 @@
-# Enclosure geometry spec (engine 1.0)
+# Enclosure geometry spec (engine 1.1)
 
 The board's `scripts/enclosure_geometry.py` defines `spec()`, returning this dict. `enclosure_drawing.py` draws from it and copies it, plus derived values, into `enclosure.json` for the docs page. Millimetres throughout.
 
@@ -24,10 +24,11 @@ You always give positions in enclosure coordinates; the engine mirrors them per 
 | Key | Type | Meaning |
 |---|---|---|
 | `title` | str | Used in view titles, e.g. `"Node60 enclosure"` |
-| `outside` | `{x, y, z}` | Outside size |
+| `outside` | `{x, y, z}` | Outside size; `z` is the lowest top (the base lid height when the top is stepped) |
 | `wall` | number | Wall, floor and lid thickness (inside = outside − 2 × wall on each axis) |
 | `board` | `{x0, x1, y0, y1, z0, z1, note?}` | Board outline and its two faces' heights; drawn dashed in every view. `note` says which face is the component side |
 | `levels` | `[{z, label}]` | Horizontal hidden lines on the wall views, dimensioned as heights: inside floor, inside lid, a shelf |
+| `raised` | `[{x0, x1, y0, y1, z, label}]` | Optional (engine 1.1). Plan rectangles where the top rises to `z`: hoods over tall parts, a raised T. Walls take the height of the regions that reach them; the views show the steps and the silhouette behind, and `--check` holds wall cutouts under their own wall's height |
 | `cutout_types` | `{NAME: type}` | One entry per connector or opening style (below) |
 | `cutouts` | `[cutout]` | Every opening (below) |
 | anything else | any | Copied into `enclosure.json` untouched: put board-specific values the page text needs here (`assumptions`, sources) |
@@ -71,7 +72,7 @@ Manufacturer drawings usually dimension the cutout from the board (or from the P
 `--check` reports, and the drawing run refuses to draw when:
 
 - a cutout's type or face is unknown;
-- a cutout's envelope (its `seal`, flange or screw square, else its outline) leaves its face;
+- a cutout's envelope (its `seal`, flange or screw square, else its outline) leaves its face (for a wall, its height at that point of a stepped top);
 - two envelopes on one face overlap.
 
 It does not know where the board or the inside walls are relative to a cutout's body; check headers against the walls and the floor in the board's own adapter or 3D mockup.

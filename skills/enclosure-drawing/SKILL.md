@@ -22,6 +22,7 @@ Ask only for what the repo doesn't already say (architecture decisions, `CLAUDE.
 - **Which connector goes on which face**, and which face is the front. A sketch from the user is enough; read positions off it as proportions, then check them against the PCB.
 - **How the board mounts**: component side up or down, and what fixes its height (standoffs, connectors screwed to a wall, terminals screwed through a lid). This sets `z` for the board and each cutout's `near_edge`.
 - **The enclosure assumptions** while no enclosure is chosen: wall thickness, gaps from board edges to walls, clearance to floor and lid. Name each one in the adapter; they will change.
+- **Whether the top is stepped.** When lid-mounted parts need a lower panel than the tall headers allow, raise the top only over the headers (`raised` regions, e.g. a T over a row of outputs and a pair on another wall) and derive each region's edges from the header bodies plus a clearance, so they follow the layout.
 - **Where positions come from**: a placement script if the board has one, otherwise the `.kicad_pcb` (the adapter template parses footprints and the Edge.Cuts outline without KiCad).
 
 ## 2. Get each connector's cutout from its manufacturer
