@@ -26,7 +26,8 @@ You always give positions in enclosure coordinates; the engine mirrors them per 
 | `title` | str | Used in view titles, e.g. `"Node60 enclosure"` |
 | `outside` | `{x, y, z}` | Outside size; `z` is the lowest top (the base lid height when the top is stepped) |
 | `wall` | number | Wall, floor and lid thickness (inside = outside − 2 × wall on each axis) |
-| `board` | `{x0, x1, y0, y1, z0, z1, note?}` | Board outline and its two faces' heights; drawn dashed in every view. `note` says which face is the component side |
+| `board` | `{x0, x1, y0, y1, z0, z1, note?, notches?}` | Board outline and its two faces' heights; drawn dashed in every view. `note` says which face is the component side. `notches` (engine 1.2): `[{x0, x1, y0, y1, label?}]` plan rectangles cut from the front or back edge, e.g. where a part on a lower board stands up through this one |
+| `boards` | `[{label, x0, x1, y0, y1, z0, z1}]` | Optional (engine 1.2). Further boards, such as a second board stacked under the first; drawn dashed in every view, labelled in the top view |
 | `levels` | `[{z, label}]` | Horizontal hidden lines on the wall views, dimensioned as heights: inside floor, inside lid, a shelf |
 | `raised` | `[{x0, x1, y0, y1, z, label}]` | Optional (engine 1.1). Plan rectangles where the top rises to `z`: hoods over tall parts, a raised T. Walls take the height of the regions that reach them; the views show the steps and the silhouette behind, and `--check` holds wall cutouts under their own wall's height |
 | `cutout_types` | `{NAME: type}` | One entry per connector or opening style (below) |
