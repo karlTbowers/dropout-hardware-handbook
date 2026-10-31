@@ -27,6 +27,8 @@ You always give positions in enclosure coordinates; the engine mirrors them per 
 | `outside` | `{x, y, z}` | Outside size; `z` is the lowest top (the base lid height when the top is stepped) |
 | `wall` | number | Wall, floor and lid thickness (inside = outside − 2 × wall on each axis) |
 | `board` | `{x0, x1, y0, y1, z0, z1, note?, notches?}` | Board outline and its two faces' heights; drawn dashed in every view. `note` says which face is the component side. `notches` (engine 1.2): `[{x0, x1, y0, y1, label?}]` plan rectangles cut from the front or back edge, e.g. where a part on a lower board stands up through this one |
+| `seats` | `[{x, y, w, depth, for}]` | Optional (engine 1.5). Square pockets in a flat lid, `w` wide and `depth` deep, for the part in cutout `for`; drawn in the top view, with that cutout's label moved above the pocket |
+| `bosses` | `[{x, y, d}]` | Optional (engine 1.4). Screw bosses under the lid (plan centre and diameter); drawn dashed in the top view |
 | `panels` | `{face: label}` | Optional (engine 1.3). Walls made as separate parts, e.g. `{"back": "removable north panel"}`; the label goes in that face view's title |
 | `boards` | `[{label, x0, x1, y0, y1, z0, z1}]` | Optional (engine 1.2). Further boards, such as a second board stacked under the first; drawn dashed in every view, labelled in the top view |
 | `levels` | `[{z, label}]` | Horizontal hidden lines on the wall views, dimensioned as heights: inside floor, inside lid, a shelf |
