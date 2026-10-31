@@ -34,6 +34,7 @@ Skills it provides:
 | `dropout-standards` | The handbook itself: Claude reads the relevant chapter for any DropOut hardware task |
 | `find-part` | Find, compare, and select parts through the DigiKey, Mouser, and Newark APIs, with dated observations |
 | `new-board` | Create a new `<board>-hw` repo from the board template |
+| `enclosure-drawing` | Generate a board's dimensioned enclosure drawing (panel cutouts, outside size, board position) from its PCB placement, on its docs site |
 
 It works alongside the **kicad-happy** plugin (distributor APIs, design analysis) and the library repo's own **`add-part`** skill.
 
