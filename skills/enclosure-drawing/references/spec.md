@@ -58,7 +58,7 @@ Manufacturer drawings usually dimension the cutout from the board (or from the P
 
 **`rect`**: `width`, `height`, `corner`, optional `holes`/`hole_d`/`seal`.
 
-**`round`**: `d` (cutout diameter), optional `screw_square` + `screw` (thread name) + `screw_d` (hole drawn, default 4) for four screws on a square, and `flange` (square flange size, drawn dashed and used for checks).
+**`round`**: `d` (cutout diameter), optional `notches` (`[width, across]`: two key notches along u, e.g. `[2.8, 18.2]`; engine 1.6), `screw_square` + `screw` (thread name) + `screw_d` (hole drawn, default 4) for four screws on a square, and `flange` (square flange size, drawn dashed and used for checks).
 
 ## Cutouts
 
